@@ -8,15 +8,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClientePresenter {
 
-    public ClienteResponseModel toResponseModel(ClienteOutputDTO outputDTO) {
+    public ClienteResponseModel toResponseModel(ClienteOutputDTO outputDTO, boolean consulta) {
         // Exemplo de formatação do telefone (coloca o DDD entre parênteses)
         String telefoneFormatado = formatarTelefone(outputDTO.telefone());
 
         // Adiciona uma mensagem de sucesso
         String mensagemSucesso = MensagemConstantes.CLIENTE_CADASTRADO_SUCESSO;
 
-        // Retorna o ClienteResponseModel já formatado
+        if (consulta) {
+            return new ClienteResponseModel(
+                    outputDTO.id(),
+                    outputDTO.nome(),
+                    outputDTO.email(),
+                    telefoneFormatado,
+                    ""
+            );
+        }
         return new ClienteResponseModel(
+                outputDTO.id(),
                 outputDTO.nome(),
                 outputDTO.email(),
                 telefoneFormatado,

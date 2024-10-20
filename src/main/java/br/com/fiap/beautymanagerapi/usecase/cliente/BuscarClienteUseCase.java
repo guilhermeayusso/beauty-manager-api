@@ -29,7 +29,7 @@ public class BuscarClienteUseCase {
                 }
         );
 
-        return new ClienteOutputDTO(cliente.getNome(),cliente.getEmail(),cliente.getTelefone());
+        return new ClienteOutputDTO(cliente.getId(),cliente.getNome(),cliente.getEmail(),cliente.getTelefone());
 
     }
 }

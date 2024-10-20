@@ -15,7 +15,7 @@ import br.com.fiap.beautymanagerapi.usecase.agendamento.CriarAgendamentoUseCase;
 import br.com.fiap.beautymanagerapi.usecase.avaliacao.BuscarAvaliacaoUseCase;
 import br.com.fiap.beautymanagerapi.usecase.avaliacao.CriarAvaliacaoUseCase;
 import br.com.fiap.beautymanagerapi.usecase.cliente.BuscarClienteUseCase;
-import br.com.fiap.beautymanagerapi.usecase.cliente.CriarClienteUseCase;
+import br.com.fiap.beautymanagerapi.usecase.cliente.CriarAlterarClienteUseCase;
 import br.com.fiap.beautymanagerapi.usecase.endereco.CriarAtualizarEnderecoUseCase;
 import br.com.fiap.beautymanagerapi.usecase.estabelecimento.BuscarEstabelecimentoUseCase;
 import br.com.fiap.beautymanagerapi.usecase.estabelecimento.CriarEstabelecimentoUseCase;
@@ -33,8 +33,8 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfig {
 
     @Bean
-    public CriarClienteUseCase criarClienteUseCase(ClienteRepositoryImpl repository) {
-        return new CriarClienteUseCase(repository);
+    public CriarAlterarClienteUseCase criarClienteUseCase(ClienteRepositoryImpl repository) {
+        return new CriarAlterarClienteUseCase(repository);
     }
 
     @Bean

@@ -5,34 +5,52 @@ import br.com.fiap.beautymanagerapi.records.cliente.ClienteInputDTO;
 import br.com.fiap.beautymanagerapi.records.cliente.ClienteOutputDTO;
 import br.com.fiap.beautymanagerapi.records.cliente.ClienteRequestModel;
 import br.com.fiap.beautymanagerapi.records.cliente.ClienteResponseModel;
-import br.com.fiap.beautymanagerapi.usecase.cliente.CriarClienteUseCase;
+import br.com.fiap.beautymanagerapi.usecase.cliente.BuscarClienteUseCase;
+import br.com.fiap.beautymanagerapi.usecase.cliente.CriarAlterarClienteUseCase;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/clientes")
 public class ClienteController {
 
-    private final CriarClienteUseCase criarClienteUseCase;
+    private final CriarAlterarClienteUseCase criarAlterarClienteUseCase;
+    private final BuscarClienteUseCase buscarClienteUseCase;
     private final ClientePresenter clientePresenter;
 
-    public ClienteController(CriarClienteUseCase criarClienteUseCase, ClientePresenter clientePresenter) {
-        this.criarClienteUseCase = criarClienteUseCase;
+    public ClienteController(CriarAlterarClienteUseCase criarAlterarClienteUseCase, BuscarClienteUseCase buscarClienteUseCase, ClientePresenter clientePresenter) {
+        this.criarAlterarClienteUseCase = criarAlterarClienteUseCase;
+        this.buscarClienteUseCase = buscarClienteUseCase;
         this.clientePresenter = clientePresenter;
     }
 
+
     @PostMapping
-    public ResponseEntity<ClienteResponseModel> criarCliente(@RequestBody ClienteRequestModel requestModel){
+    public ResponseEntity<ClienteResponseModel> criarCliente(@Valid @RequestBody ClienteRequestModel requestModel) {
 
         var clienteDTO = toInputDTO(requestModel);
-        ClienteOutputDTO outputDTO = criarClienteUseCase.criarCliente(clienteDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(clientePresenter.toResponseModel(outputDTO));
+        ClienteOutputDTO outputDTO = criarAlterarClienteUseCase.criarCliente(clienteDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientePresenter.toResponseModel(outputDTO, false));
 
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteResponseModel> buscarCliente(@PathVariable Long id) {
+        ClienteOutputDTO outputDTO = buscarClienteUseCase.buscarCliente(id);
+        return ResponseEntity.ok(clientePresenter.toResponseModel(outputDTO, true));
+
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizar(@Valid @RequestBody ClienteRequestModel requestModel, @PathVariable Long id) {
+        var clienteDTO = toInputDTO(requestModel);
+        ClienteOutputDTO outputDTO = criarAlterarClienteUseCase.atualizarCliente(clienteDTO,id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
     private ClienteInputDTO toInputDTO(ClienteRequestModel requestModel) {
         return new ClienteInputDTO(
