@@ -33,7 +33,7 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfig {
 
     @Bean
-    public CriarAlterarClienteUseCase criarClienteUseCase(ClienteRepositoryImpl repository) {
+    public CriarAlterarClienteUseCase criarAlterarClienteUseCase(ClienteRepositoryImpl repository) {
         return new CriarAlterarClienteUseCase(repository);
     }
 
