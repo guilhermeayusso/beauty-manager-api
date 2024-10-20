@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.fiap</groupId>
     <artifactId>beauty-manager-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>beauty-manager-api</name>
     <description>Sistema de agendamento e gerenciamento para serviços de beleza e bem-estar...</description>
     <properties>

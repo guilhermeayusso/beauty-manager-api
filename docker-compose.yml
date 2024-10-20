@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  beauty-manager:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: beauty-manager-api:latest
+    ports:
+      - "8081:8081"

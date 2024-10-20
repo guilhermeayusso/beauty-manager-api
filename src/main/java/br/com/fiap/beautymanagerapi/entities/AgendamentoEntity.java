@@ -41,6 +41,6 @@ public class AgendamentoEntity {
     private LocalDateTime dataHora;
 
     @Enumerated(EnumType.STRING)
-    private StatusAgendamento status = StatusAgendamento.ABERTO;
+    private StatusAgendamento status;
 
 }
