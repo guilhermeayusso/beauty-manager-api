@@ -37,5 +37,5 @@ jobs:
       # Submeter o snapshot de dependências com Personal Access Token
       - name: Update dependency graph
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Usa o PAT com permissões adequadas
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usa o PAT com permissões adequadas
         uses: advanced-security/maven-dependency-submission-action@v1
