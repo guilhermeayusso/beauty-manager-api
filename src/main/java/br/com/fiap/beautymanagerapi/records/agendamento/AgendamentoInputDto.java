@@ -1,0 +1,16 @@
+package br.com.fiap.beautymanagerapi.records.agendamento;
+
+import br.com.fiap.beautymanagerapi.enums.StatusAgendamento;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+public record AgendamentoInputDto(
+        Long clienteId,
+        Long profissionalId,
+        Long servicoId,
+        Long estabelecimentoId,
+        LocalDateTime dataHora,
+        StatusAgendamento status
+) implements Serializable {
+}
