@@ -33,9 +33,3 @@ jobs:
       # Executa a construção do projeto com Maven
       - name: Build with Maven
         run: mvn -B test --file pom.xml
-
-      # Submeter o snapshot de dependências com Personal Access Token
-      - name: Update dependency graph
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usa o PAT com permissões adequadas
-        uses: advanced-security/maven-dependency-submission-action@v1
