@@ -28,10 +28,11 @@ jobs:
     - name: Generate JaCoCo report
       run: mvn jacoco:report
 
-    # Exibir a cobertura no GitHub com uma ação de terceiros, como Codecov
+    # Upload de cobertura para Codecov
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}   # Certifique-se de que o token está configurado corretamente nos segredos do repositório
         files: ./target/site/jacoco/jacoco.xml
         flags: unittests
         name: codecov-coverage
