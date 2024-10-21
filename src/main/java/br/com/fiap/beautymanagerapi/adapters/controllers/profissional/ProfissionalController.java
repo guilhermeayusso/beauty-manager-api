@@ -1,6 +1,6 @@
 package br.com.fiap.beautymanagerapi.adapters.controllers.profissional;
 
-import br.com.fiap.beautymanagerapi.adapters.presenters.ProfissionalPresenter;
+import br.com.fiap.beautymanagerapi.adapters.presenters.profissional.ProfissionalPresenter;
 import br.com.fiap.beautymanagerapi.records.profissional.ProfissionalInputDTO;
 import br.com.fiap.beautymanagerapi.records.profissional.ProfissionalRequestModel;
 import br.com.fiap.beautymanagerapi.records.profissional.ProfissionalRequestModelStatus;
