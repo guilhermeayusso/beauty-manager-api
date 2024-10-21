@@ -5,6 +5,9 @@ import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoOutpu
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoResponseModel;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class EstabelecimentoPresenter {
 
@@ -20,5 +23,27 @@ public class EstabelecimentoPresenter {
                 outputDTO.nome(),
                 mensagem
         );
+
+
+    }
+
+    public EstabelecimentoResponseModel toResponseModelGet(EstabelecimentoOutputDTO outputDTO) {
+
+
+        return new EstabelecimentoResponseModel(
+                outputDTO.id(),
+                outputDTO.nome(),
+                null
+        );
+    }
+
+    public List<EstabelecimentoResponseModel> toResponseModelGet(List<EstabelecimentoOutputDTO> outputDTO) {
+
+        return outputDTO.stream().map(
+                e -> new EstabelecimentoResponseModel(
+                        e.id(),
+                        e.nome(),
+                        null)
+        ).collect(Collectors.toList());
     }
 }

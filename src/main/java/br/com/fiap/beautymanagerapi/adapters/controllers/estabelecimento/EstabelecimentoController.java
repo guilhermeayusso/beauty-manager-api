@@ -2,6 +2,8 @@ package br.com.fiap.beautymanagerapi.adapters.controllers.estabelecimento;
 
 import br.com.fiap.beautymanagerapi.adapters.presenters.estabelecimento.EstabelecimentoPresenter;
 import br.com.fiap.beautymanagerapi.constantes.MensagemConstantes;
+import br.com.fiap.beautymanagerapi.records.cliente.ClienteOutputDTO;
+import br.com.fiap.beautymanagerapi.records.cliente.ClienteResponseModel;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoInputDTO;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoRequestModel;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoResponseModel;
@@ -10,13 +12,11 @@ import br.com.fiap.beautymanagerapi.usecase.estabelecimento.CriarEstabelecimento
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/estabelecimentos")
@@ -37,6 +37,18 @@ public class EstabelecimentoController {
         var estabelecimento = toInputDTO(estabelecimentoRequestModel);
         var estabelecimentoSalvo = criarEstabelecimentoUseCase.criarEstabelecimento(estabelecimento);
         return ResponseEntity.status(HttpStatus.CREATED).body(estabelecimentoPresenter.toResponseModel(estabelecimentoSalvo));
+    }
+
+    @GetMapping("/busca-por-id/{id}")
+    public ResponseEntity<EstabelecimentoResponseModel> buscarEstabelecimentoPorId(@PathVariable Long id) {
+        var estabelecimento = buscarEstabelecimentoUseCase.buscarEstabelecimentoPorId(id);
+        return ResponseEntity.ok(estabelecimentoPresenter.toResponseModelGet(estabelecimento));
+    }
+
+    @GetMapping("/busca-por-nome/{nome}")
+    public ResponseEntity<List<EstabelecimentoResponseModel>> buscarEstabelecimentos(@PathVariable String nome) {
+        var estabelecimento = buscarEstabelecimentoUseCase.buscarEstabelecimentosPorNome(nome);
+        return ResponseEntity.ok(estabelecimentoPresenter.toResponseModelGet(estabelecimento));
     }
 
 
