@@ -17,5 +17,9 @@ public class MensagemConstantes {
 
     public static final String ENDERECO_JA_CADASTRADO = "Endereço já cadastrado. ";
     public static final String ENDERECO_NAO_ENCONTRADO = "Endereço não encontrado. ";
+
+    public static final String ESTABELECIMENTO_CADASTRO_ETAPA_INICIAL_CONCLUIDA = "Primeira etapa do cadastro concluída! Agora, complete as próximas etapas: endereço, localização e serviços oferecidos.";
+
+    public static final String INCONSISTENCIA_HORARIO = "Horário de abertura deve ser anterior ao horário de fechamento" ;
 }
 

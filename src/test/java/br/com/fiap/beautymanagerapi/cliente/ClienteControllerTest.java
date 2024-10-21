@@ -46,9 +46,12 @@ public class ClienteControllerTest {
 
     private ClienteRequestModel clienteRequest;
 
+    private ClienteRequestModel clienteRequestError;
+
     @BeforeEach
     void setUp() {
         clienteRequest = new ClienteRequestModel("João Silva", "joao.silva@example.com", "(11) 99999-9999");
+        clienteRequestError = new ClienteRequestModel("João Silva", "example.com", "(11) 99999-9999");
     }
 
     @Test
@@ -113,6 +116,27 @@ public class ClienteControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(clienteRequest)))
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void criarCliente_DeveRetornarStatus422() throws Exception {
+        // Criando um ClienteOutputDTO de exemplo
+        ClienteOutputDTO clienteOutputDTO = new ClienteOutputDTO(1L, "nome", "joao.silva@example.com", "(11) 99999-9999");
+
+        // Mockando o comportamento do caso de uso
+        when(criarAlterarClienteUseCase.criarCliente(any())).thenReturn(clienteOutputDTO);
+
+        // Criando um ClienteResponseModel de exemplo para o retorno do presenter
+        ClienteResponseModel clienteResponseModel = new ClienteResponseModel(1L, "nome", "joao.silva@example.com", "(11) 99999-9999", MensagemConstantes.CLIENTE_CADASTRADO_SUCESSO);
+
+        // Mockando o comportamento do presenter
+        when(clientePresenter.toResponseModel(clienteOutputDTO, false)).thenReturn(clienteResponseModel);
+
+        // Execução da requisição e validação do status 201 (Created)
+        mockMvc.perform(post("/api/v1/clientes")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(clienteRequestError)))
+                .andExpect(status().isUnprocessableEntity());
     }
 }
 
