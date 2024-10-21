@@ -36,7 +36,7 @@ public class CriarAtualizarEnderecoUseCaseTest {
         );
 
         // Quando criamos o endereço
-        EnderecoOutputDTO enderecoOutputDTO = criarAtualizarEnderecoUseCase.criarOuAtualizarEndereco(enderecoInputDTO);
+        EnderecoOutputDTO enderecoOutputDTO = criarAtualizarEnderecoUseCase.criarEndereco(enderecoInputDTO);
 
         // Então o endereço deve ser criado com sucesso e os dados devem corresponder
         assertThat(enderecoOutputDTO.cep()).isEqualTo("12345-678");
@@ -59,7 +59,7 @@ public class CriarAtualizarEnderecoUseCaseTest {
 
         // Quando tentamos criar um segundo endereço para o mesmo estabelecimento
         ConflictException exception = assertThrows(ConflictException.class, () -> {
-            criarAtualizarEnderecoUseCase.criarOuAtualizarEndereco(enderecoInputDTO);
+            criarAtualizarEnderecoUseCase.criarEndereco(enderecoInputDTO);
         });
 
         // Então uma exceção de conflito deve ser lançada com a mensagem correta

@@ -36,6 +36,7 @@ public class CriarAlterarClienteUseCase {
 
     }
 
+    @Transactional
     public ClienteOutputDTO atualizarCliente(ClienteInputDTO clienteDTO, Long id){
        ClienteEntity cliente = EntityValidatorUtil.validaCliente(id,clienteRepository);
 

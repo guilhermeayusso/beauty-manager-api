@@ -6,8 +6,11 @@ import br.com.fiap.beautymanagerapi.constantes.MensagemConstantes;
 import br.com.fiap.beautymanagerapi.entities.EstabelecimentoEntity;
 import br.com.fiap.beautymanagerapi.enums.StatusProfissional;
 import br.com.fiap.beautymanagerapi.exception.EstabelecimentoNotFoundException;
+import br.com.fiap.beautymanagerapi.projection.EstabelecimentoProjection;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoOutputDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -90,6 +93,11 @@ public class BuscarEstabelecimentoUseCase {
                         estabelecimento.getId(),
                         estabelecimento.getNome()))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public Page<EstabelecimentoProjection> buscarTodosEstabelecimentos(Pageable pageable) {
+        return estabelecimentoRepository.findAllPageable(pageable);
     }
 
 }

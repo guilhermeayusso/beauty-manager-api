@@ -2,6 +2,9 @@ package br.com.fiap.beautymanagerapi.adapters.gateways.estabelecimento;
 
 import br.com.fiap.beautymanagerapi.entities.EstabelecimentoEntity;
 import br.com.fiap.beautymanagerapi.enums.StatusProfissional;
+import br.com.fiap.beautymanagerapi.projection.EstabelecimentoProjection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -50,5 +53,10 @@ public class EstabelecimentoRepositoryImpl implements EstabelecimentoRepository 
     @Override
     public Optional<EstabelecimentoEntity> buscarPorId(Long id) {
         return estabelecimentoRepository.findById(id);
+    }
+
+    @Override
+    public Page<EstabelecimentoProjection> findAllPageable(Pageable pageable) {
+        return estabelecimentoRepository.findAllPageable(pageable);
     }
 }

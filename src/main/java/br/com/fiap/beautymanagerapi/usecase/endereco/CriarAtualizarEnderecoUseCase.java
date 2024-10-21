@@ -29,7 +29,7 @@ public class CriarAtualizarEnderecoUseCase {
     }
 
     @Transactional
-    public EnderecoOutputDTO criarOuAtualizarEndereco(EnderecoInputDTO enderecoInputDTO) {
+    public EnderecoOutputDTO criarEndereco(EnderecoInputDTO enderecoInputDTO) {
 
         EstabelecimentoEntity estabelecimento = EntityValidatorUtil.validaEstabelecimento(enderecoInputDTO.estabelecimentoId(), estabelecimentoRepository);
 

@@ -7,6 +7,7 @@ import br.com.fiap.beautymanagerapi.exception.ClienteNotFoundException;
 import br.com.fiap.beautymanagerapi.records.cliente.ClienteOutputDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ public class BuscarClienteUseCase {
     public BuscarClienteUseCase(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
-
+    @Transactional(readOnly = true)
     public ClienteOutputDTO buscarCliente(Long id) {
         Optional<ClienteEntity> clienteOptional = clienteRepository.buscarClientePorId(id);
 
