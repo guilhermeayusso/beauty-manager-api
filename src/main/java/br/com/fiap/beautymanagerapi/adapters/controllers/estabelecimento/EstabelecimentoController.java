@@ -2,8 +2,6 @@ package br.com.fiap.beautymanagerapi.adapters.controllers.estabelecimento;
 
 import br.com.fiap.beautymanagerapi.adapters.presenters.estabelecimento.EstabelecimentoPresenter;
 import br.com.fiap.beautymanagerapi.constantes.MensagemConstantes;
-import br.com.fiap.beautymanagerapi.records.cliente.ClienteOutputDTO;
-import br.com.fiap.beautymanagerapi.records.cliente.ClienteResponseModel;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoInputDTO;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoRequestModel;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoResponseModel;
