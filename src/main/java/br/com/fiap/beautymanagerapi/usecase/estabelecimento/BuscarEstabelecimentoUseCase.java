@@ -9,6 +9,7 @@ import br.com.fiap.beautymanagerapi.exception.EstabelecimentoNotFoundException;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoOutputDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +25,7 @@ public class BuscarEstabelecimentoUseCase {
         this.estabelecimentoRepository = estabelecimentoRepository;
     }
 
+    @Transactional(readOnly = true)
     public EstabelecimentoOutputDTO buscarEstabelecimentoPorId(Long idEstabelecimento) {
 
         Optional<EstabelecimentoEntity> estabelecimentoOptional = estabelecimentoRepository.buscarPorId(idEstabelecimento);
@@ -37,7 +39,7 @@ public class BuscarEstabelecimentoUseCase {
                 estabelecimento.getNome());
     }
 
-
+    @Transactional(readOnly = true)
     public List<EstabelecimentoOutputDTO> buscarEstabelecimentosPorNome(String nome) {
         List<EstabelecimentoEntity> estabelecimentos = estabelecimentoRepository.buscarPorNome(nome);
 
@@ -47,7 +49,7 @@ public class BuscarEstabelecimentoUseCase {
                         estabelecimento.getNome()))
                 .collect(Collectors.toList());
     }
-
+    @Transactional(readOnly = true)
     public List<EstabelecimentoOutputDTO> buscarEstabelecimentosPorTipo(String tipoEstabelecimento) {
         List<EstabelecimentoEntity> estabelecimentos = estabelecimentoRepository.buscarPorTipoDoEstabelecimento(tipoEstabelecimento);
 
@@ -58,7 +60,7 @@ public class BuscarEstabelecimentoUseCase {
                 .collect(Collectors.toList());
     }
 
-
+    @Transactional(readOnly = true)
     public List<EstabelecimentoOutputDTO> buscarEstabelecimentosPorCidade(String cidade) {
         List<EstabelecimentoEntity> estabelecimentos = estabelecimentoRepository.buscarPorCidade(cidade);
 
@@ -68,7 +70,7 @@ public class BuscarEstabelecimentoUseCase {
                         estabelecimento.getNome()))
                 .collect(Collectors.toList());
     }
-
+    @Transactional(readOnly = true)
     public List<EstabelecimentoOutputDTO> buscarPorStatusDoProfissional(StatusProfissional status) {
         List<EstabelecimentoEntity> estabelecimentos = estabelecimentoRepository.buscarPorStatusDoProfissional(status);
 
@@ -79,6 +81,7 @@ public class BuscarEstabelecimentoUseCase {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public List<EstabelecimentoOutputDTO> buscarPorServicosOferecidos(String servico) {
         List<EstabelecimentoEntity> estabelecimentos = estabelecimentoRepository.buscarPorServicoOferecido(servico);
 

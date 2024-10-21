@@ -2,6 +2,9 @@ package br.com.fiap.beautymanagerapi.adapters.gateways.estabelecimento;
 
 import br.com.fiap.beautymanagerapi.entities.EstabelecimentoEntity;
 import br.com.fiap.beautymanagerapi.enums.StatusProfissional;
+import br.com.fiap.beautymanagerapi.projection.EstabelecimentoProjection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,4 +25,6 @@ public interface JpaEstabelecimentoRepository extends JpaRepository<Estabelecime
     @Query("SELECT r FROM EstabelecimentoEntity r WHERE LOWER(r.tipoEstabelecimento) LIKE %:tipoEstabelecimento%")
     List<EstabelecimentoEntity> findByTipoEstabelecimentoContainingIgnoreCase(@Param("tipoEstabelecimento") String tipoEstabelecimento);
 
+    @Query("select e from EstabelecimentoEntity e")
+    Page<EstabelecimentoProjection> findAllPageable (Pageable pageable);
 }
