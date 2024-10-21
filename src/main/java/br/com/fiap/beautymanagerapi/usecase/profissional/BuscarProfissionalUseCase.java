@@ -36,8 +36,7 @@ public class BuscarProfissionalUseCase {
                 profissional.getNome(),
                 profissional.getEspecialidades(),
                 profissional.getStatusProfissional(),
-                profissional.getEstabelecimento().getNome(),
-                profissional.getEstabelecimento().getEndereco().getLogradouro()
+                profissional.getEstabelecimento().getNome()
         );
 
 

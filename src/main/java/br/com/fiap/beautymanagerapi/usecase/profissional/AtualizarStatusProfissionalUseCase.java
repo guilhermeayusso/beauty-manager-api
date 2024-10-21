@@ -47,8 +47,7 @@ public class AtualizarStatusProfissionalUseCase {
                 profissionalAtualizado.getNome(),
                 profissionalAtualizado.getEspecialidades(),
                 profissionalAtualizado.getStatusProfissional(),
-                profissionalAtualizado.getEstabelecimento().getNome(),
-                profissionalAtualizado.getEstabelecimento().getEndereco().getLogradouro()
+                profissionalAtualizado.getEstabelecimento().getNome()
         );
     }
 }

@@ -46,7 +46,6 @@ public class BuscarProfissionalUseCaseTest {
         assertThat(outputDTO.especialidades()).isEqualTo(profissional.getEspecialidades());
         assertThat(outputDTO.statusProfissional()).isEqualTo(profissional.getStatusProfissional());
         assertThat(outputDTO.estabelecimento()).isEqualTo(profissional.getEstabelecimento().getNome());
-        assertThat(outputDTO.enderecoEstabelecimento()).isEqualTo(profissional.getEstabelecimento().getEndereco().getLogradouro());
     }
 
     @Test

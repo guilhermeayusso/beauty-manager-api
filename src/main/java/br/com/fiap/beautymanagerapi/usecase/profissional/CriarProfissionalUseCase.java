@@ -42,8 +42,7 @@ public class CriarProfissionalUseCase {
                 profissionalSaved.getNome(),
                 profissionalSaved.getEspecialidades(),
                 profissionalSaved.getStatusProfissional(),
-                profissionalSaved.getEstabelecimento().getNome(),
-                profissionalSaved.getEstabelecimento().getEndereco().getLogradouro()
+                profissionalSaved.getEstabelecimento().getNome()
         );
 
         return outputDTO;
