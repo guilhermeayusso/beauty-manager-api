@@ -35,7 +35,7 @@ public class AtualizarAgendamentoUseCaseTest {
         // Atualizando o agendamento para "FINALIZADO"
         AgendamentoOutputDto output = atualizarAgendamentoUseCase.atualizarStatus(
                 11L, // ID do agendamento a ser atualizado
-                input
+                input.status()
         );
 
         assertThat(output).isNotNull();
@@ -58,7 +58,7 @@ public class AtualizarAgendamentoUseCaseTest {
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
             atualizarAgendamentoUseCase.atualizarStatus(
                     100L, // ID inválido
-                    input
+                    input.status()
             );
         });
 

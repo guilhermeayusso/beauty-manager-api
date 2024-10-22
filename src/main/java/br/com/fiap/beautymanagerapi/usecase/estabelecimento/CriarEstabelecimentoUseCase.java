@@ -1,7 +1,6 @@
 package br.com.fiap.beautymanagerapi.usecase.estabelecimento;
 
 import br.com.fiap.beautymanagerapi.adapters.gateways.estabelecimento.EstabelecimentoRepository;
-import br.com.fiap.beautymanagerapi.entities.EnderecoEntity;
 import br.com.fiap.beautymanagerapi.entities.EstabelecimentoEntity;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoInputDTO;
 import br.com.fiap.beautymanagerapi.records.estabelecimento.EstabelecimentoOutputDTO;

@@ -4,8 +4,8 @@ import br.com.fiap.beautymanagerapi.adapters.gateways.agendamento.AgendamentoRep
 import br.com.fiap.beautymanagerapi.adapters.gateways.estabelecimento.EstabelecimentoRepository;
 import br.com.fiap.beautymanagerapi.constantes.MensagemConstantes;
 import br.com.fiap.beautymanagerapi.entities.AgendamentoEntity;
+import br.com.fiap.beautymanagerapi.enums.StatusAgendamento;
 import br.com.fiap.beautymanagerapi.exception.AgendamentoNotFoundException;
-import br.com.fiap.beautymanagerapi.records.agendamento.AgendamentoInputDto;
 import br.com.fiap.beautymanagerapi.records.agendamento.AgendamentoOutputDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class AtualizarAgendamentoUseCase {
     }
 
     @Transactional
-    public AgendamentoOutputDto atualizarStatus(Long id, AgendamentoInputDto agendamentoInputDto) {
+    public AgendamentoOutputDto atualizarStatus(Long id, StatusAgendamento statusAgendamento) {
 
         Optional<AgendamentoEntity> agendamentoOptional = agendamentoRepository.buscarAgendamentoPorId(id);
 
@@ -34,7 +34,7 @@ public class AtualizarAgendamentoUseCase {
             return new AgendamentoNotFoundException(MensagemConstantes.EXCEPTION_AGENDAMENTO_NAO_ENCONTRADO);
         });
 
-        agendamento.setStatus(agendamentoInputDto.status());
+        agendamento.setStatus(statusAgendamento);
         AgendamentoEntity agendamentoSaved = agendamentoRepository.save(agendamento);
 
         return new AgendamentoOutputDto(agendamentoSaved.getId(),agendamentoSaved.getDataHora(),agendamentoSaved.getStatus());
